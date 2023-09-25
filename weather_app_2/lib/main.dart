@@ -21,9 +21,14 @@ class MyWeatherApp extends StatelessWidget {
   }
 }
 
-class WeatherForecast extends StatelessWidget {
+class WeatherForecast extends StatefulWidget {
   const WeatherForecast({super.key});
 
+  @override
+  State<WeatherForecast> createState() => _WeatherForecastState();
+}
+
+class _WeatherForecastState extends State<WeatherForecast> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -54,7 +59,7 @@ Widget _buildBodyWeather() {
             height: 30,
           ),
           _cityData(),
-           const SizedBox(
+          const SizedBox(
             height: 40,
           ),
           _temperature(),
@@ -62,6 +67,10 @@ Widget _buildBodyWeather() {
             height: 40,
           ),
           _snowWidget(),
+          const SizedBox(
+            height: 40,
+          ),
+          _temperatureWeekForecast(),
         ],
       ),
     ),
@@ -101,24 +110,37 @@ Column _cityData() {
     ],
   );
 }
-Row _temperature(){
-  return const Row(mainAxisAlignment: MainAxisAlignment.center,
+
+Row _temperature() {
+  return const Row(
+    mainAxisAlignment: MainAxisAlignment.center,
     children: [
-      Icon(Icons.wb_sunny, color: Colors.white, size: 80,),
-      SizedBox(width: 35,),
+      Icon(
+        Icons.wb_sunny,
+        color: Colors.white,
+        size: 80,
+      ),
+      SizedBox(
+        width: 35,
+      ),
       Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('14 °F', style: TextStyle(color: Colors.white, fontSize: 40),),
-          Text('LIGHT SNOW', style: TextStyle(color: Colors.white, fontSize: 20),),
-
+          Text(
+            '14 °F',
+            style: TextStyle(color: Colors.white, fontSize: 40),
+          ),
+          Text(
+            'LIGHT SNOW',
+            style: TextStyle(color: Colors.white, fontSize: 20),
+          ),
         ],
       )
     ],
   );
 }
 
-Widget _snowWidget(){
+Widget _snowWidget() {
   return const Row(
     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
     children: [
@@ -144,7 +166,121 @@ Widget _snowWidget(){
         ],
       ),
     ],
-    
-
   );
 }
+
+Widget _temperatureWeekForecast() {
+  var day1 = const Row(
+    children: [
+      Text('Friday', style: TextStyle(color: Colors.white, fontSize: 15),),
+      Row(children: [
+        Text('6 °F', style: TextStyle(color: Colors.white),),
+        Icon(Icons.wb_sunny, color: Colors.white,)
+      ],),
+    ],
+  );
+  var day2 = const Row(
+    children: [
+      Text('Friday', style: TextStyle(color: Colors.white, fontSize: 15),),
+      Row(children: [
+        Text('6 °F', style: TextStyle(color: Colors.white),),
+        Icon(Icons.wb_sunny, color: Colors.white,)
+      ],),
+    ],
+  );
+  return SingleChildScrollView(
+    scrollDirection: Axis.horizontal,
+    padding: const EdgeInsets.all(12),
+      child: Row(children: [
+        day1,
+        const SizedBox(width: 12,),
+        day2,
+      ],
+        
+      ),
+    );
+  
+}
+// Widget _temperatureWeekForecast() {
+//   return SizedBox(
+//     height: 210,
+//     child: ListView.separated(
+//       scrollDirection: Axis.horizontal,
+//       padding: const EdgeInsets.all(12.0),
+//       itemCount: 7,
+//       separatorBuilder: (BuildContext context, int index) {
+//         return const SizedBox(
+//           width: 8,
+//         );
+//       },
+//       itemBuilder: (context, int index) {
+//         return weatherCard(index);
+//       },
+//     ),
+//   );
+// }
+
+// Widget weatherCard(int index) {
+//   return const Column(
+//     mainAxisSize: MainAxisSize.min,
+//     children: [
+//       ListTile(
+//                 title: Text(
+//                   'Friday',
+//                   style: TextStyle(color: Colors.white),
+//                 ),
+//                 subtitle: Text('6 °F'),
+//                 trailing: Icon(Icons.wb_sunny),
+//               ),
+//               ListTile(
+//                 title: Text(
+//                   'Saturday',
+//                   style: TextStyle(color: Colors.white),
+//                 ),
+//                 subtitle: Text('5 °F'),
+//                 trailing: Icon(Icons.wb_sunny),
+//               ),
+//               ListTile(
+//                 title: Text(
+//                   'Sunday',
+//                   style: TextStyle(color: Colors.white),
+//                 ),
+//                 subtitle: Text('8 °F'),
+//                 trailing: Icon(Icons.wb_sunny),
+//               ),
+//               ListTile(
+//                 title: Text(
+//                   'Monday',
+//                   style: TextStyle(color: Colors.white),
+//                 ),
+//                 subtitle: Text('7 °F'),
+//                 trailing: Icon(Icons.wb_sunny),
+//               ),
+//               ListTile(
+//                 title: Text(
+//                   'Tuesday',
+//                   style: TextStyle(color: Colors.white),
+//                 ),
+//                 subtitle: Text('6 °F'),
+//                 trailing: Icon(Icons.wb_sunny),
+//               ),
+//               ListTile(
+//                 title: Text(
+//                   'Wednesday',
+//                   style: TextStyle(color: Colors.white),
+//                 ),
+//                 subtitle: Text('5 °F'),
+//                 trailing: Icon(Icons.wb_sunny),
+//               ),
+//               ListTile(
+//                 title: Text(
+//                   'Thursday',
+//                   style: TextStyle(color: Colors.white),
+//                 ),
+//                 subtitle: Text('5 °F'),
+//                 trailing: Icon(Icons.wb_sunny),
+//               ),
+//     ],
+//   );
+// }
+
