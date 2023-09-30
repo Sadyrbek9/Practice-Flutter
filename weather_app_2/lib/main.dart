@@ -50,6 +50,7 @@ class _WeatherForecastState extends State<WeatherForecast> {
 
 Widget _buildBodyWeather() {
   return SingleChildScrollView(
+    // scrollDirection: Axis.horizontal,
     child: Padding(
       padding: const EdgeInsets.all(12.0),
       child: Column(
@@ -70,29 +71,47 @@ Widget _buildBodyWeather() {
           const SizedBox(
             height: 40,
           ),
-          _temperatureWeekForecast(),
+          const Text(
+            '7 - DAY WEATHER FORECAST',
+            style: TextStyle(
+                color: Colors.white, fontSize: 20, fontWeight: FontWeight.w200),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          // const WeekListView (),
+          // const ListTile(
+          //   title: Text(
+          //     'Friday',
+          //     style: TextStyle(color: Colors.white),
+          //   ),
+          //   subtitle: Text('6 °F'),
+          //   trailing: Icon(Icons.wb_sunny),
+          // ),
+          // const SizedBox(
+          //   height: 10,
+          // ),
         ],
       ),
     ),
   );
 }
 
-Row _searchIcon() {
-  return const Row(
-    children: [
-      Icon(
+Widget _searchIcon() {
+  // var cityNameController;
+  return const TextField(
+    // controller: cityNameController,
+    // textInputAction: TextInputAction.done,
+    obscureText: false, style: TextStyle(color: Colors.white),
+    decoration: InputDecoration(
+      hintText: 'Enter City Name', hintStyle: TextStyle(color: Colors.white),
+      prefixIcon: Icon(
         Icons.search,
-        size: 30,
         color: Colors.white,
       ),
-      SizedBox(
-        width: 10,
-      ),
-      Text(
-        'Enter city name',
-        style: TextStyle(color: Colors.white, fontSize: 20),
-      )
-    ],
+      border: OutlineInputBorder(),
+      // labelText: 'Enter City Name', labelStyle:
+    ),
   );
 }
 
@@ -168,39 +187,89 @@ Widget _snowWidget() {
     ],
   );
 }
+// class WeekListView extends StatelessWidget{
+//   const WeekListView({super.key});
 
-Widget _temperatureWeekForecast() {
-  var day1 = const Row(
-    children: [
-      Text('Friday', style: TextStyle(color: Colors.white, fontSize: 15),),
-      Row(children: [
-        Text('6 °F', style: TextStyle(color: Colors.white),),
-        Icon(Icons.wb_sunny, color: Colors.white,)
-      ],),
-    ],
-  );
-  var day2 = const Row(
-    children: [
-      Text('Friday', style: TextStyle(color: Colors.white, fontSize: 15),),
-      Row(children: [
-        Text('6 °F', style: TextStyle(color: Colors.white),),
-        Icon(Icons.wb_sunny, color: Colors.white,)
-      ],),
-    ],
-  );
-  return SingleChildScrollView(
-    scrollDirection: Axis.horizontal,
-    padding: const EdgeInsets.all(12),
-      child: Row(children: [
-        day1,
-        const SizedBox(width: 12,),
-        day2,
-      ],
-        
-      ),
-    );
-  
-}
+//   @override
+//   Widget build (BuildContext context){
+//     return _temperatureWeekForecast();
+//   }
+// }
+// Widget _temperatureWeekForecast() {
+//   return ListView(
+//     // scrollDirection: Axis.horizontal,
+//     // itemExtent: 7,
+//     children: const [
+//       Text('1'),
+//         Text('2'),
+//           Text('3'),
+//     ]);
+// }
+
+//  const [
+//   SizedBox(
+//     height: 50,
+//     width: 60,
+//     child: ListTile(
+//       shape: BeveledRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20))),
+//       title: Text('Friday'),
+//       subtitle: Text('6 °F'),
+//       trailing: Icon(Icons.sunny),
+//     ),
+//   ),
+//    SizedBox(
+//     height: 50,
+//     width: 60,
+//              child: ListTile(
+//       shape: BeveledRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20))),
+//       title: Text('Friday'),
+//       subtitle: Text('6 °F'),
+//       trailing: Icon(Icons.sunny),
+//          ),
+//    ),
+//    SizedBox(height: 50,
+//     width: 60,
+//      child: ListTile(
+//       shape: BeveledRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20))),
+//       title: Text('Friday'),
+//       subtitle: Text('6 °F'),
+//       trailing: Icon(Icons.sunny),
+//          ),
+//    ),
+//     ],
+//   );
+// }
+// //   var day1 = const Row(
+//     children: [
+//       Text('Friday', style: TextStyle(color: Colors.white, fontSize: 15),),
+//       Row(children: [
+//         Text('6 °F', style: TextStyle(color: Colors.white),),
+//         Icon(Icons.wb_sunny, color: Colors.white,)
+//       ],),
+//     ],
+//   );
+//   var day2 = const Row(
+//     children: [
+//       Text('Friday', style: TextStyle(color: Colors.white, fontSize: 15),),
+//       Row(children: [
+//         Text('6 °F', style: TextStyle(color: Colors.white),),
+//         Icon(Icons.wb_sunny, color: Colors.white,)
+//       ],),
+//     ],
+//   );
+//   return SingleChildScrollView(
+//     scrollDirection: Axis.horizontal,
+//     padding: const EdgeInsets.all(12),
+//       child: Row(children: [
+//         day1,
+//         const SizedBox(width: 12,),
+//         day2,
+//       ],
+
+//       ),
+//     );
+
+// }
 // Widget _temperatureWeekForecast() {
 //   return SizedBox(
 //     height: 210,
@@ -283,4 +352,3 @@ Widget _temperatureWeekForecast() {
 //     ],
 //   );
 // }
-
